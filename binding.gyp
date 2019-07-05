@@ -74,7 +74,9 @@
                 # "yescrypt/yescrypt-platform.c",
                 # "yescrypt/yescrypt-simd.c",
                 # "yescrypt/yescryptcommon.c"              
-                
+				"yespower/sha256.c",
+				"yespower/yespower-opt.c",
+				"yespower/yespower.c",
 
             ],
             "include_dirs": [
