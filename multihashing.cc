@@ -42,8 +42,8 @@ extern "C" {
     #include "x16r.h"
     #include "zr5.h"
     #include "geek.h"
-    #include "yescrypt/yescrypt.h"
-    #include "yescrypt/sha256_Y.h"
+    #include "yespower/yespower.h"
+    #include "yespower/sha256.h"
 }
 
 #include "boolberry.h"
@@ -624,7 +624,7 @@ NAN_METHOD(fresh) {
 }
 
 
-NAN_METHOD(yescrypt) {
+NAN_METHOD(yespower) {
 
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
@@ -637,7 +637,7 @@ NAN_METHOD(yescrypt) {
     char * input = Buffer::Data(target);
     char *output = (char*) malloc(sizeof(char) * 32);
 
-    yescrypt_hash(input, output);
+    yespower_hash(input, output);
 
     info.GetReturnValue().Set(Nan::NewBuffer(output, 32).ToLocalChecked());
 
@@ -692,7 +692,7 @@ NAN_MODULE_INIT(init) {
     Nan::Set(target, Nan::New("x16r").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(x16r)).ToLocalChecked());
     Nan::Set(target, Nan::New("fresh").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(fresh)).ToLocalChecked());
     Nan::Set(target, Nan::New("neoscrypt").ToLocalChecked(),Nan::GetFunction(Nan::New<FunctionTemplate>(neoscrypt)).ToLocalChecked());
-    Nan::Set(target, Nan::New("yescrypt").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(yescrypt)).ToLocalChecked());
+    Nan::Set(target, Nan::New("yespower").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(yespower)).ToLocalChecked());
     Nan::Set(target, Nan::New("geek").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(geek)).ToLocalChecked());
 }
 
